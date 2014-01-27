@@ -1,0 +1,8 @@
+.DS_Store
+tmp/
+log/
+arduino/.build
+config/config.yml
+vendor
+.bundle
+.rbenv-version

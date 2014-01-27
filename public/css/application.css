@@ -1,0 +1,17 @@
+.row {
+  line-height: 4.5em;
+  margin: 0 auto;
+}
+
+.debug {
+  border: 1px dotted red;
+}
+
+.nogutter {
+  margin-left: 0;
+}
+
+ul.data {
+  list-style: none;
+  margin: 0;
+}
