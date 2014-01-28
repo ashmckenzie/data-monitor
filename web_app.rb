@@ -2,11 +2,12 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/streaming'
 require 'rack/cache'
-require 'better_errors'
 require 'json'
 require 'ostruct'
 
 require 'pry'
+
+require 'better_errors' if ENV['RACK_ENV'] == 'development'
 
 require_relative './config/initialisers/init'
 require_relative './lib/max_monitor/data'
