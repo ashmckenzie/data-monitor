@@ -54,6 +54,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.1.0)
+    rb-readline (0.5.1)
     redis (3.0.6)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -91,6 +92,7 @@ DEPENDENCIES
   pushover_sender!
   rack-cache
   rake
+  rb-readline
   redis
   redis-namespace
   sequel

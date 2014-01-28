@@ -17,6 +17,7 @@ gem 'hashie'
 gem 'foreman'
 gem 'puma'
 # gem 'thin'
+gem 'rb-readline'
 
 gem 'redis'
 gem 'redis-namespace'
