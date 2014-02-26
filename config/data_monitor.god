@@ -15,8 +15,20 @@ God.watch do |w|
 
   w.start_if do |start|
     start.condition(:process_running) do |c|
-      c.interval = 5.seconds
+      c.interval = 30.seconds
       c.running = false
+    end
+  end
+
+  w.lifecycle do |on|
+    on.condition(:flapping) do |c|
+      c.to_state = [:start, :restart]
+      c.times = 3
+      c.within = 5.minutes
+      c.transition = :unmonitored
+      c.retry_in = 5.minutes
+      c.retry_times = 3
+      c.retry_within = 10.minutes
       c.notify = 'admin'
     end
   end
