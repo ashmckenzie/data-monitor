@@ -13,10 +13,10 @@ God.watch do |w|
 
   w.start     = %Q{bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
 
-  w.keepalive
-
-  w.transition(:up, :start) do |on|
-    on.condition(:process_exits) do |c|
+  w.start_if do |start|
+    start.condition(:process_running) do |c|
+      c.interval = 5.seconds
+      c.running = false
       c.notify = 'admin'
     end
   end
