@@ -1,8 +1,7 @@
 require 'yaml'
 
-BASE = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
-
-config_file = File.expand_path(File.join(BASE, '..', 'config.yml'))
+base = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
+config_file = File.expand_path(File.join(base, '..', 'config.yml'))
 c = YAML.load_file(config_file)
 
 God.watch do |w|
@@ -12,7 +11,7 @@ God.watch do |w|
   w.dir       = c['working_directory']
   w.log       = c['log_file']
 
-  w.start     = %Q{HOME="#{c['working_directory']}" bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
+  w.start     = %Q{bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
 
   w.keepalive
 
