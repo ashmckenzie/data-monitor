@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Stopping and starting data-monitor"
+sudo god stop data-monitor
+sudo god start data-monitor

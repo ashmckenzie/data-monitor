@@ -3,6 +3,7 @@ tmp/
 log/
 arduino/.build
 config/config.yml
+config/config-raspberrypi.yml
 vendor
 .bundle
 .rbenv-version

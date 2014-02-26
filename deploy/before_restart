@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+oldrev, newrev = ARGV
+
+def run(cmd)
+  exit($?.exitstatus) unless system "umask 002 && #{cmd}"
+end
+
+def god_installed?
+  Gem::Specification.find_by_name('god')
+  true
+rescue Gem::LoadError
+  false
+end
+
+def god_file_symlinked?
+  File.symlink?('/etc/god/god.conf')
+end
+
+def god_conf_d_exists?
+  File.exist?('/etc/god/conf.d')
+end
+
+# ------------------------------------------------------------------------------
+
+run "bundle install --deployment --without 'development test'"
+
+run "ln -nfs /home/ash/apps/data-monitor/config/config-raspberrypi.yml /home/ash/apps/data-monitor/config/config.yml"
+
+run "sudo gem install god --no-rdoc --no-ri" unless god_installed?
+run "sudo mkdir -p /etc/god/conf.d" unless god_conf_d_exists?
+run "sudo ln -nfs /home/ash/apps/data-monitor/config/data_monitor.god /etc/god/conf.d/data_monitor.god"
+run "sudo god load /etc/god/conf.d/data_monitor.god"

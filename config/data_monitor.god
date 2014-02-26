@@ -14,12 +14,11 @@ God.watch do |w|
 
   w.start     = %Q{HOME="#{c['working_directory']}" bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
 
-  # w.transition(:up, :start) do |on|
-  #   on.condition(:process_exits) do |c|
-  #     c.notify = 'ash'
-  #   end
-  # end
-
   w.keepalive
 
+  w.transition(:up, :start) do |on|
+    on.condition(:process_exits) do |c|
+      c.notify = 'admin'
+    end
+  end
 end
