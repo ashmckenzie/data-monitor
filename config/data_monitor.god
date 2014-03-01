@@ -11,7 +11,7 @@ God.watch do |w|
   w.dir       = c['working_directory']
   w.log       = c['log_file']
 
-  w.start     = %Q{bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
+  w.start     = %Q{HOME="#{c['working_directory']}" bundle exec puma --port #{c['http_port']} -e #{c['environment']}}
 
   w.start_if do |start|
     start.condition(:process_running) do |c|
