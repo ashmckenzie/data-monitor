@@ -29,7 +29,7 @@ God.watch do |w|
       c.retry_in = 5.minutes
       c.retry_times = 3
       c.retry_within = 10.minutes
-      c.notify = 'admin'
+      c.notify = 'notify-me'
     end
   end
 end
