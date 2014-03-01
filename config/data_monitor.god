@@ -15,8 +15,9 @@ God.watch do |w|
 
   w.start_if do |start|
     start.condition(:process_running) do |c|
-      c.interval = 30.seconds
+      c.interval = 10.seconds
       c.running = false
+      c.notify = 'notify-me'
     end
   end
 
